@@ -1,4 +1,3 @@
-import 'package:amazonclone/utils/utils.dart';
 import 'package:flutter/material.dart';
 
 class TextFieldWidget extends StatefulWidget {

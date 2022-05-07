@@ -1,4 +1,7 @@
+import 'package:amazonclone/screens/home_screen.dart';
 import 'package:flutter/material.dart';
+
+import '../widgets/simple_product_widget.dart';
 
 const double kAppBarHeight = 80;
 
@@ -44,6 +47,99 @@ const List<String> smallAds = [
   "https://m.media-amazon.com/images/I/11kOjZtNhnL._SS70_.png",
 ];
 
+List<Widget> testChildren = [
+  SimpleProductWidget(
+    url: categoryLogos[0],
+  ),
+  SimpleProductWidget(
+    url: categoryLogos[1],
+  ),
+  SimpleProductWidget(
+    url: categoryLogos[2],
+  ),
+  SimpleProductWidget(
+    url: categoryLogos[3],
+  ),
+  SimpleProductWidget(
+    url: categoryLogos[4],
+  ),
+  SimpleProductWidget(
+    url: categoryLogos[5],
+  ),
+  SimpleProductWidget(
+    url: categoryLogos[6],
+  ),
+  SimpleProductWidget(
+    url: categoryLogos[7],
+  ),
+  SimpleProductWidget(
+    url: categoryLogos[8],
+  ),
+];
+
+// List<Widget> testChildren = [
+//   SimpleProductWidget(
+//     productModel: ProductModel(
+//         url: "https://m.media-amazon.com/images/I/11uufjN3lYL._SX90_SY90_.png",
+//         productName: "Rick Astley",
+//         cost: 9999999999999,
+//         discount: 0,
+//         uid: "eioejfbkn",
+//         sellerName: "Rick Seller",
+//         sellerUid: "983498ihjb",
+//         rating: 1,
+//         noOfRating: 1),
+//   ),
+//   SimpleProductWidget(
+//     productModel: ProductModel(
+//         url: "https://m.media-amazon.com/images/I/11uufjN3lYL._SX90_SY90_.png",
+//         productName: "Rick Astley",
+//         cost: 9999999999999,
+//         discount: 0,
+//         uid: "eioejfbkn",
+//         sellerName: "Rick Seller",
+//         sellerUid: "983498ihjb",
+//         rating: 1,
+//         noOfRating: 1),
+//   ),
+//   SimpleProductWidget(
+//     productModel: ProductModel(
+//         url: "https://m.media-amazon.com/images/I/11uufjN3lYL._SX90_SY90_.png",
+//         productName: "Rick Astley",
+//         cost: 9999999999999,
+//         discount: 0,
+//         uid: "eioejfbkn",
+//         sellerName: "Rick Seller",
+//         sellerUid: "983498ihjb",
+//         rating: 1,
+//         noOfRating: 1),
+//   ),
+//   SimpleProductWidget(
+//     productModel: ProductModel(
+//         url: "https://m.media-amazon.com/images/I/11uufjN3lYL._SX90_SY90_.png",
+//         productName: "Rick Astley",
+//         cost: 9999999999999,
+//         discount: 0,
+//         uid: "eioejfbkn",
+//         sellerName: "Rick Seller",
+//         sellerUid: "983498ihjb",
+//         rating: 1,
+//         noOfRating: 1),
+//   ),
+//   SimpleProductWidget(
+//     productModel: ProductModel(
+//         url: "https://m.media-amazon.com/images/I/11uufjN3lYL._SX90_SY90_.png",
+//         productName: "Rick Astley",
+//         cost: 9999999999999,
+//         discount: 0,
+//         uid: "eioejfbkn",
+//         sellerName: "Rick Seller",
+//         sellerUid: "983498ihjb",
+//         rating: 1,
+//         noOfRating: 1),
+//   )
+// ];
+
 const List<String> adItemNames = [
   "Amazon Pay",
   "Recharge",
@@ -61,4 +157,17 @@ List<String> keysOfRating = [
   "Average",
   "Good",
   "Excellent"
+];
+
+const List<Widget> screens = [
+  HomeScreen(),
+  Center(
+    child: Text("Account Screen"),
+  ),
+  Center(
+    child: Text("Cart Screen"),
+  ),
+  Center(
+    child: Text("More Screen"),
+  ),
 ];

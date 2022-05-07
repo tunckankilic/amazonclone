@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:amazonclone/resources/auth_methods.dart';
 import 'package:amazonclone/screens/sign_in_screen.dart';
 import 'package:amazonclone/utils/colors.dart';
