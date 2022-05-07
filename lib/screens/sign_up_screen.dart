@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:amazonclone/resources/auth_methods.dart';
+import 'package:amazonclone/screens/sign_in_screen.dart';
 import 'package:amazonclone/utils/colors.dart';
 import 'package:amazonclone/utils/constants.dart';
 import 'package:amazonclone/utils/utils.dart';
@@ -19,6 +20,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   AuthMethods authMethods = AuthMethods();
+  bool isLoading = false;
 
   @override
   void dispose() {
@@ -107,16 +109,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 ),
                               ),
                               color: yellowColor,
-                              isLoading: false,
+                              isLoading: isLoading,
                               onPressed: () async {
+                                setState(() {
+                                  isLoading = true;
+                                });
                                 String output = await authMethods.signUpUser(
                                   name: _nameController.text,
                                   address: _addressController.text,
                                   email: _emailController.text,
                                   password: _passwordController.text,
                                 );
+                                setState(() {
+                                  isLoading = false;
+                                });
                                 if (output == "success") {
-                                  log("Doing next step");
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) => SignInScreen()));
                                 } else {
                                   Utils().showSnackBar(
                                     context: context,
@@ -141,7 +150,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                         color: Colors.grey[600]!,
                         isLoading: false,
-                        onPressed: () => Navigator.of(context).pop(),
+                        onPressed: () => Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => SignInScreen(),
+                          ),
+                        ),
                       ),
                     ),
                   ],
