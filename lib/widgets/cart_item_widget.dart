@@ -45,10 +45,9 @@ class CartItemWidget extends StatelessWidget {
                   ),
                 ),
                 ProductInfo(
-                  productName: productModel.productName,
-                  cost: productModel.cost,
-                  sellerName: productModel.sellerName
-                ),
+                    productName: productModel.productName,
+                    cost: productModel.cost,
+                    sellerName: productModel.sellerName),
               ],
               mainAxisAlignment: MainAxisAlignment.start,
             ),
@@ -83,7 +82,7 @@ class CartItemWidget extends StatelessWidget {
           ),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.only(top: 10),
+              padding: const EdgeInsets.only(top: 5),
               child: Column(
                 children: [
                   Row(
@@ -105,7 +104,7 @@ class CartItemWidget extends StatelessWidget {
                     height: 5,
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 6),
+                    padding: const EdgeInsets.only(top: 5),
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(

@@ -1,3 +1,5 @@
+import 'package:amazonclone/utils/constants.dart';
+import 'package:amazonclone/widgets/category_widget.dart';
 import 'package:amazonclone/widgets/search_bar_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +18,22 @@ class _MoreScreenState extends State<MoreScreen> {
         hasBackButton: false,
         isReadOnly: true,
       ),
-      
+      body: Padding(
+        padding: const EdgeInsets.all(5.0),
+        child: GridView.builder(
+          scrollDirection: Axis.vertical,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3,
+            childAspectRatio: 2.2 / 3.5,
+            mainAxisSpacing: 15,
+            crossAxisSpacing: 10,
+          ),
+          itemCount: categoriesList.length,
+          itemBuilder: (context, index) {
+            return CategoryWidget(index: index);
+          },
+        ),
+      ),
     );
   }
 }

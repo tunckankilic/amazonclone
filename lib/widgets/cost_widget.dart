@@ -17,7 +17,7 @@ class CostWidget extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Text(
-          "\$",
+          "\$ ",
           style: TextStyle(
             color: color,
             fontSize: 10,
@@ -29,7 +29,7 @@ class CostWidget extends StatelessWidget {
         Text(
           (cost - (cost - cost.toInt())).toStringAsFixed(2),
           style: TextStyle(
-            fontSize: 35,
+            fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
         ),

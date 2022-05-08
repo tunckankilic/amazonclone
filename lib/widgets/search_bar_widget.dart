@@ -1,3 +1,4 @@
+import 'package:amazonclone/screens/results_screen.dart';
 import 'package:amazonclone/screens/search_screen.dart';
 import 'package:amazonclone/utils/colors.dart';
 import 'package:amazonclone/utils/constants.dart';
@@ -60,6 +61,13 @@ class SearchBarWidget extends StatelessWidget with PreferredSizeWidget {
                 ],
               ),
               child: TextField(
+                onSubmitted: (value) {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => ResultsScreen(query: value),
+                    ),
+                  );
+                },
                 readOnly: isReadOnly,
                 onTap: () {
                   if (isReadOnly) {
