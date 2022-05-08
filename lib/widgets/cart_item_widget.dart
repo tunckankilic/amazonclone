@@ -1,3 +1,4 @@
+import 'package:amazonclone/screens/product_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'package:amazonclone/model/product_model.dart';
@@ -31,25 +32,34 @@ class CartItemWidget extends StatelessWidget {
         children: [
           Expanded(
             flex: 3,
-            child: Row(
-              children: [
-                SizedBox(
-                  width: screenSize.width / 3,
-                  child: Align(
-                    alignment: Alignment.topCenter,
-                    child: Center(
-                      child: Image.network(
-                        productModel.url,
+            child: GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          ProductScreen(productModel: productModel)),
+                );
+              },
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: screenSize.width / 3,
+                    child: Align(
+                      alignment: Alignment.topCenter,
+                      child: Center(
+                        child: Image.network(
+                          productModel.url,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                ProductInfo(
-                    productName: productModel.productName,
-                    cost: productModel.cost,
-                    sellerName: productModel.sellerName),
-              ],
-              mainAxisAlignment: MainAxisAlignment.start,
+                  ProductInfo(
+                      productName: productModel.productName,
+                      cost: productModel.cost,
+                      sellerName: productModel.sellerName),
+                ],
+                mainAxisAlignment: MainAxisAlignment.start,
+              ),
             ),
           ),
           Expanded(

@@ -43,6 +43,10 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         body: Stack(
           children: [
+            UserDetailsBar(
+              offset: offset,
+              userDetailsModel: UserDetailsModel(address: "Ev", name: "Ayşe"),
+            ),
             SingleChildScrollView(
               controller: scrollController,
               child: Column(
@@ -70,10 +74,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ],
               ),
-            ),
-            UserDetailsBar(
-              offset: offset,
-              userDetailsModel: UserDetailsModel(address: "Ev", name: "Ayşe"),
             ),
           ],
         ),

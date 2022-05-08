@@ -4,6 +4,7 @@ import 'package:amazonclone/screens/home_screen.dart';
 import 'package:amazonclone/screens/more_screen.dart';
 import 'package:flutter/material.dart';
 
+import '../model/product_model.dart';
 import '../widgets/simple_product_widget.dart';
 
 const double kAppBarHeight = 80;
@@ -52,96 +53,84 @@ const List<String> smallAds = [
 
 List<Widget> testChildren = [
   SimpleProductWidget(
-    url: categoryLogos[0],
+    productModel: ProductModel(
+      url: categoryLogos[0],
+      sellerName: "Ayşe",
+      sellerUid: "asşdkjasşdkşals",
+      cost: 9999,
+      discount: 0,
+      noOfRating: 1,
+      rating: 8,
+      uid: "asdasdasdasda",
+      productName: "Item",
+    ),
   ),
   SimpleProductWidget(
-    url: categoryLogos[1],
+    productModel: ProductModel(
+      url: categoryLogos[0],
+      sellerName: "Ayşe",
+      sellerUid: "asşdkjasşdkşals",
+      cost: 9999,
+      discount: 0,
+      noOfRating: 1,
+      rating: 8,
+      uid: "asdasdasdasda",
+      productName: "Item",
+    ),
   ),
   SimpleProductWidget(
-    url: categoryLogos[2],
+    productModel: ProductModel(
+      url: categoryLogos[0],
+      sellerName: "Ayşe",
+      sellerUid: "asşdkjasşdkşals",
+      cost: 9999,
+      discount: 0,
+      noOfRating: 1,
+      rating: 8,
+      uid: "asdasdasdasda",
+      productName: "Item",
+    ),
   ),
   SimpleProductWidget(
-    url: categoryLogos[3],
+    productModel: ProductModel(
+      url: categoryLogos[0],
+      sellerName: "Ayşe",
+      sellerUid: "asşdkjasşdkşals",
+      cost: 9999,
+      discount: 0,
+      noOfRating: 1,
+      rating: 8,
+      uid: "asdasdasdasda",
+      productName: "Item",
+    ),
   ),
   SimpleProductWidget(
-    url: categoryLogos[4],
+    productModel: ProductModel(
+      url: categoryLogos[0],
+      sellerName: "Ayşe",
+      sellerUid: "asşdkjasşdkşals",
+      cost: 9999,
+      discount: 0,
+      noOfRating: 1,
+      rating: 8,
+      uid: "asdasdasdasda",
+      productName: "Item",
+    ),
   ),
   SimpleProductWidget(
-    url: categoryLogos[5],
-  ),
-  SimpleProductWidget(
-    url: categoryLogos[6],
-  ),
-  SimpleProductWidget(
-    url: categoryLogos[7],
-  ),
-  SimpleProductWidget(
-    url: categoryLogos[8],
+    productModel: ProductModel(
+      url: categoryLogos[0],
+      sellerName: "Ayşe",
+      sellerUid: "asşdkjasşdkşals",
+      cost: 9999,
+      discount: 0,
+      noOfRating: 1,
+      rating: 8,
+      uid: "asdasdasdasda",
+      productName: "Item",
+    ),
   ),
 ];
-
-// List<Widget> testChildren = [
-//   SimpleProductWidget(
-//     productModel: ProductModel(
-//         url: "https://m.media-amazon.com/images/I/11uufjN3lYL._SX90_SY90_.png",
-//         productName: "Rick Astley",
-//         cost: 9999999999999,
-//         discount: 0,
-//         uid: "eioejfbkn",
-//         sellerName: "Rick Seller",
-//         sellerUid: "983498ihjb",
-//         rating: 1,
-//         noOfRating: 1),
-//   ),
-//   SimpleProductWidget(
-//     productModel: ProductModel(
-//         url: "https://m.media-amazon.com/images/I/11uufjN3lYL._SX90_SY90_.png",
-//         productName: "Rick Astley",
-//         cost: 9999999999999,
-//         discount: 0,
-//         uid: "eioejfbkn",
-//         sellerName: "Rick Seller",
-//         sellerUid: "983498ihjb",
-//         rating: 1,
-//         noOfRating: 1),
-//   ),
-//   SimpleProductWidget(
-//     productModel: ProductModel(
-//         url: "https://m.media-amazon.com/images/I/11uufjN3lYL._SX90_SY90_.png",
-//         productName: "Rick Astley",
-//         cost: 9999999999999,
-//         discount: 0,
-//         uid: "eioejfbkn",
-//         sellerName: "Rick Seller",
-//         sellerUid: "983498ihjb",
-//         rating: 1,
-//         noOfRating: 1),
-//   ),
-//   SimpleProductWidget(
-//     productModel: ProductModel(
-//         url: "https://m.media-amazon.com/images/I/11uufjN3lYL._SX90_SY90_.png",
-//         productName: "Rick Astley",
-//         cost: 9999999999999,
-//         discount: 0,
-//         uid: "eioejfbkn",
-//         sellerName: "Rick Seller",
-//         sellerUid: "983498ihjb",
-//         rating: 1,
-//         noOfRating: 1),
-//   ),
-//   SimpleProductWidget(
-//     productModel: ProductModel(
-//         url: "https://m.media-amazon.com/images/I/11uufjN3lYL._SX90_SY90_.png",
-//         productName: "Rick Astley",
-//         cost: 9999999999999,
-//         discount: 0,
-//         uid: "eioejfbkn",
-//         sellerName: "Rick Seller",
-//         sellerUid: "983498ihjb",
-//         rating: 1,
-//         noOfRating: 1),
-//   )
-// ];
 
 const List<String> adItemNames = [
   "Amazon Pay",

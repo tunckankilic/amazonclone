@@ -30,58 +30,61 @@ class _ScreenLayoutState extends State<ScreenLayout> {
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 4,
-      child: Scaffold(
-        body: PageView(
-          controller: pageController,
-          children: screens,
-        ),
-        bottomNavigationBar: Container(
-          margin:
-              EdgeInsets.only(bottom: Utils().getScreenSize().height * 0.01),
-          decoration: BoxDecoration(
-            border: Border(
-              top: BorderSide(
-                color: Colors.grey[300]!,
-                width: 1,
-              ),
-            ),
+      child: SafeArea(
+        child: Scaffold(
+          body: PageView(
+            physics: NeverScrollableScrollPhysics(),
+            controller: pageController,
+            children: screens,
           ),
-          child: TabBar(
-            indicator: BoxDecoration(
+          bottomNavigationBar: Container(
+            margin:
+                EdgeInsets.only(bottom: Utils().getScreenSize().height * 0.01),
+            decoration: BoxDecoration(
               border: Border(
-                top: BorderSide(color: activeCyanColor, width: 4),
+                top: BorderSide(
+                  color: Colors.grey[300]!,
+                  width: 1,
+                ),
               ),
             ),
-            indicatorSize: TabBarIndicatorSize.label,
-            onTap: (int page) {
-              changePage(page);
-            },
-            tabs: [
-              Tab(
-                child: Icon(
-                  Icons.home_outlined,
-                  color: currentPage == 0 ? activeCyanColor : Colors.black,
+            child: TabBar(
+              indicator: BoxDecoration(
+                border: Border(
+                  top: BorderSide(color: activeCyanColor, width: 4),
                 ),
               ),
-              Tab(
-                child: Icon(
-                  Icons.account_circle_outlined,
-                  color: currentPage == 1 ? activeCyanColor : Colors.black,
+              indicatorSize: TabBarIndicatorSize.label,
+              onTap: (int page) {
+                changePage(page);
+              },
+              tabs: [
+                Tab(
+                  child: Icon(
+                    Icons.home_outlined,
+                    color: currentPage == 0 ? activeCyanColor : Colors.black,
+                  ),
                 ),
-              ),
-              Tab(
-                child: Icon(
-                  Icons.shopping_cart_outlined,
-                  color: currentPage == 2 ? activeCyanColor : Colors.black,
+                Tab(
+                  child: Icon(
+                    Icons.account_circle_outlined,
+                    color: currentPage == 1 ? activeCyanColor : Colors.black,
+                  ),
                 ),
-              ),
-              Tab(
-                child: Icon(
-                  Icons.menu_outlined,
-                  color: currentPage == 3 ? activeCyanColor : Colors.black,
+                Tab(
+                  child: Icon(
+                    Icons.shopping_cart_outlined,
+                    color: currentPage == 2 ? activeCyanColor : Colors.black,
+                  ),
                 ),
-              ),
-            ],
+                Tab(
+                  child: Icon(
+                    Icons.menu_outlined,
+                    color: currentPage == 3 ? activeCyanColor : Colors.black,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
