@@ -1,6 +1,7 @@
 import 'package:amazonclone/screens/account_screen.dart';
 import 'package:amazonclone/screens/cart_screen.dart';
 import 'package:amazonclone/screens/home_screen.dart';
+import 'package:amazonclone/screens/more_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/simple_product_widget.dart';
@@ -165,7 +166,5 @@ const List<Widget> screens = [
   HomeScreen(),
   AccountScreen(),
   CartScreen(),
-  Center(
-    child: Text("More Screen"),
-  ),
+  MoreScreen(),
 ];

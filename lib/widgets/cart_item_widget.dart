@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:amazonclone/model/product_model.dart';
 import 'package:amazonclone/utils/colors.dart';
-import 'package:amazonclone/utils/constants.dart';
 import 'package:amazonclone/utils/utils.dart';
 import 'package:amazonclone/widgets/custom_simple_rounded_button.dart';
 import 'package:amazonclone/widgets/custom_square_button.dart';
