@@ -4,7 +4,6 @@ import 'package:amazonclone/widgets/banner_ad_widget.dart';
 import 'package:amazonclone/widgets/categories_horizontal_list_view_bar.dart';
 import 'package:amazonclone/widgets/products_showcase_list_view.dart';
 import 'package:amazonclone/widgets/search_bar_widget.dart';
-import 'package:amazonclone/widgets/simple_product_widget.dart';
 import 'package:amazonclone/widgets/user_details.dart';
 import 'package:flutter/material.dart';
 

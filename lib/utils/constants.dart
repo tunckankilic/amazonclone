@@ -1,3 +1,5 @@
+import 'package:amazonclone/screens/account_screen.dart';
+import 'package:amazonclone/screens/cart_screen.dart';
 import 'package:amazonclone/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -161,12 +163,8 @@ List<String> keysOfRating = [
 
 const List<Widget> screens = [
   HomeScreen(),
-  Center(
-    child: Text("Account Screen"),
-  ),
-  Center(
-    child: Text("Cart Screen"),
-  ),
+  AccountScreen(),
+  CartScreen(),
   Center(
     child: Text("More Screen"),
   ),
