@@ -1,5 +1,4 @@
 import 'package:amazonclone/layout/screen_layout.dart';
-import 'package:amazonclone/screens/results_screen.dart';
 import 'package:amazonclone/utils/colors.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';

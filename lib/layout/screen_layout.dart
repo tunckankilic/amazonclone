@@ -1,3 +1,4 @@
+import 'package:amazonclone/resources/firestore_methods.dart';
 import 'package:amazonclone/utils/colors.dart';
 import 'package:amazonclone/utils/constants.dart';
 import 'package:amazonclone/utils/utils.dart';
@@ -24,6 +25,12 @@ class _ScreenLayoutState extends State<ScreenLayout> {
     setState(() {
       currentPage = page;
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    FirestoreMethods().getNameAndAddress();
   }
 
   @override
