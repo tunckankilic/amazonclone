@@ -19,4 +19,18 @@ class ProductModel {
     required this.rating,
     required this.noOfRating,
   });
+
+  Map<String, dynamic> getJson() {
+    return {
+      "url": url,
+      "productName": productName,
+      "cost": cost,
+      "discount": discount,
+      "uid": uid,
+      "sellerName": sellerName,
+      "sellerUid": sellerUid,
+      "rating": rating,
+      "noOfRating": noOfRating,
+    };
+  }
 }

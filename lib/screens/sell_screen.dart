@@ -198,17 +198,17 @@ class _SellScreenState extends State<SellScreen> {
                               color: Colors.orange,
                               isLoading: isLoading,
                               onPressed: () async {
-                                String output = await FirestoreMethods()
-                                    .uploadProductToDatabase(
-                                  image: image!,
-                                  productName: _nameController.text.trim(),
-                                  cost: _costController.text.trim(),
-                                  discont: keysForDiscount[1],
-                                  sellerName: info.name,
-                                  sellerUid:
-                                      FirebaseAuth.instance.currentUser!.uid,
-                                );
-                                if (output == "success") {
+                                try {
+                                  String output = await FirestoreMethods()
+                                      .uploadProductToDatabase(
+                                    image: image!,
+                                    productName: _nameController.text.trim(),
+                                    cost: _costController.text.trim(),
+                                    discont: keysForDiscount[1],
+                                    sellerName: info.name,
+                                    sellerUid:
+                                        FirebaseAuth.instance.currentUser!.uid,
+                                  );if (output == "success") {
                                   Utils().showSnackBar(
                                       context: context,
                                       content: "Posted Product Successfully");
@@ -216,6 +216,11 @@ class _SellScreenState extends State<SellScreen> {
                                   Utils().showSnackBar(
                                       context: context, content: output);
                                 }
+                                } catch (e) {
+                                  print(e.toString());
+                                }
+
+                                
                               },
                             ),
                             CustomMainButton(
