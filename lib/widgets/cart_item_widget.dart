@@ -1,3 +1,4 @@
+import 'package:amazonclone/resources/firestore_methods.dart';
 import 'package:amazonclone/screens/product_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -82,7 +83,20 @@ class CartItemWidget extends StatelessWidget {
                 ),
                 CustomSquareButton(
                   child: Icon(Icons.add),
-                  onPressed: () {},
+                  onPressed: () async {
+                    await FirestoreMethods().addProductToCard(
+                        productModel: ProductModel(
+                      url: productModel.url,
+                      productName: productModel.productName,
+                      cost: productModel.cost,
+                      discount: productModel.discount,
+                      uid: Utils().getUid(),
+                      sellerName: productModel.sellerName,
+                      sellerUid: productModel.sellerUid,
+                      rating: productModel.rating,
+                      noOfRating: productModel.noOfRating,
+                    ));
+                  },
                   color: backgroundColor,
                   dimension: 40,
                 ),
@@ -98,7 +112,10 @@ class CartItemWidget extends StatelessWidget {
                   Row(
                     children: [
                       CustomSimpleRoundedButton(
-                        onPressed: () {},
+                        onPressed: () async {
+                          FirestoreMethods()
+                              .deleteProductFromCart(uid: productModel.uid);
+                        },
                         text: "Delete",
                       ),
                       SizedBox(
@@ -119,7 +136,10 @@ class CartItemWidget extends StatelessWidget {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         "See More",
-                        style: TextStyle(color: activeCyanColor),
+                        style: TextStyle(
+                          color: activeCyanColor,
+                          fontSize: 12,
+                        ),
                       ),
                     ),
                   ),

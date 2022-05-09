@@ -1,5 +1,5 @@
 import 'package:amazonclone/model/review_model.dart';
-import 'package:amazonclone/model/user_details.dart';
+import 'package:amazonclone/resources/firestore_methods.dart';
 import 'package:amazonclone/utils/colors.dart';
 import 'package:amazonclone/utils/constants.dart';
 import 'package:amazonclone/utils/utils.dart';
@@ -104,7 +104,12 @@ class _ProductScreenState extends State<ProductScreen> {
                           ),
                           color: Colors.orange[900]!,
                           isLoading: false,
-                          onPressed: () {},
+                          onPressed: () async {
+                            await FirestoreMethods().addProductToOrders(
+                                productModel: widget.productModel);
+                            Utils().showSnackBar(
+                                context: context, content: "Done");
+                          },
                         ),
                         Space,
                         CustomMainButton(
@@ -116,11 +121,18 @@ class _ProductScreenState extends State<ProductScreen> {
                           ),
                           color: yellowColor,
                           isLoading: false,
-                          onPressed: () {},
+                          onPressed: () async {
+                            await FirestoreMethods().addProductToCard(
+                                productModel: widget.productModel);
+                            Utils().showSnackBar(
+                                context: context,
+                                content:
+                                    "An item added to cart ${widget.productModel.productName}");
+                          },
                         ),
                         Space,
                         CustomSimpleRoundedButton(
-                          onPressed: () {
+                          onPressed: () async {
                             showDialog(
                                 context: context,
                                 builder: (context) => ReviewDialog(
