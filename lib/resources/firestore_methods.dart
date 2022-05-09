@@ -109,6 +109,10 @@ class FirestoreMethods {
         .doc(productUid)
         .collection("reviews")
         .add(model.getJson());
+    await changeAverageRating(
+      productId: productUid,
+      reviewModel: model,
+    );
   }
 
   Future addProductToCard({required ProductModel productModel}) async {
@@ -140,7 +144,8 @@ class FirestoreMethods {
       ProductModel productModel = ProductModel.getModelFromJson(
         json: snapshot.docs[i].data(),
       );
-      addProductToOrders(productModel: productModel,userDetailsModel: userDetailsModel);
+      addProductToOrders(
+          productModel: productModel, userDetailsModel: userDetailsModel);
       await deleteProductFromCart(uid: productModel.uid);
     }
   }
@@ -170,5 +175,21 @@ class FirestoreMethods {
         .doc(productModel.sellerUid)
         .collection("orderRequests")
         .add(orderRequestModel.getJson());
+  }
+
+  Future changeAverageRating({
+    required String productId,
+    required ReviewModel reviewModel,
+  }) async {
+    DocumentSnapshot snapshot =
+        await firebaseFirestore.collection("products").doc(productId).get();
+    ProductModel productModel =
+        ProductModel.getModelFromJson(json: (snapshot.data() as dynamic));
+    int currentRating = reviewModel.rating;
+    int newRating = ((currentRating + reviewModel.rating) / 2).toInt();
+    await firebaseFirestore
+        .collection("products")
+        .doc(productId)
+        .update({"rating": newRating});
   }
 }

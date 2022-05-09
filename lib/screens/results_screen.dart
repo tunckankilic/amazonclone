@@ -1,5 +1,7 @@
+import 'package:amazonclone/screens/sell_screen.dart';
 import 'package:amazonclone/widgets/results_widget.dart';
 import 'package:amazonclone/widgets/search_bar_widget.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import '../model/product_model.dart';
@@ -48,26 +50,32 @@ class ResultsScreen extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  childAspectRatio: 2 / 3,
-                ),
-                itemBuilder: (context, index) {
-                  return ResultsWidget(
-                    productModel: ProductModel(
-                      url: categoryLogos[0],
-                      sellerName: "Ayşe",
-                      sellerUid: "asşdkjasşdkşals",
-                      cost: 10,
-                      discount: 0,
-                      noOfRating: 1,
-                      rating: 3,
-                      uid: "asdasdasdasda",
-                      productName: "Item",
-                    ),
-                  );
-                }),
+            child: FutureBuilder(
+              future: FirebaseFirestore.instance
+                  .collection("products")
+                  .where("productName", isEqualTo: query)
+                  .get(),
+              builder: (context,
+                  AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return LoadingWidget();
+                } else {
+                  return GridView.builder(
+                      itemCount: snapshot.data!.docs.length,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3,
+                        childAspectRatio: 2 / 3.5,
+                      ),
+                      itemBuilder: (context, index) {
+                        ProductModel productModel =
+                            ProductModel.getModelFromJson(
+                          json: snapshot.data!.docs[index].data(),
+                        );
+                        return ResultsWidget(productModel: productModel);
+                      });
+                }
+              },
+            ),
           ),
         ],
       ),
