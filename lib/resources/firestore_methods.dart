@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:amazonclone/model/product_model.dart';
+import 'package:amazonclone/model/review_model.dart';
 import 'package:amazonclone/model/user_details.dart';
 import 'package:amazonclone/utils/utils.dart';
 import 'package:amazonclone/widgets/simple_product_widget.dart';
@@ -96,5 +97,16 @@ class FirestoreMethods {
       );
     }
     return children;
+  }
+
+  Future uploadReviewToDatabase({
+required ReviewModel model,
+    required String productUid,
+  }) async {
+    firebaseFirestore
+        .collection("products")
+        .doc(productUid)
+        .collection("reviews")
+        .add(model.getJson());
   }
 }
