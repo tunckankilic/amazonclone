@@ -3,9 +3,11 @@ import 'dart:typed_data';
 import 'package:amazonclone/model/product_model.dart';
 import 'package:amazonclone/model/user_details.dart';
 import 'package:amazonclone/utils/utils.dart';
+import 'package:amazonclone/widgets/simple_product_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/material.dart';
 
 class FirestoreMethods {
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
@@ -28,7 +30,7 @@ class FirestoreMethods {
   }
 
   Future<String> uploadProductToDatabase({
-    required Uint8List image,
+    required Uint8List? image,
     required String productName,
     required String cost,
     required int discont,
@@ -39,35 +41,30 @@ class FirestoreMethods {
     cost.trim();
     String output = "Something went wrong";
     if (image != null && productName != "" && cost != "") {
-      String uid = Utils().getUid();
-      String url =
-          await uploadImageToDatabase(image: image, uid: Utils().getUid());
-      double rawCost = double.parse(cost);
-      rawCost = rawCost - (rawCost * (discont / 100));
-      ProductModel product = ProductModel(
-        url: url,
-        productName: productName,
-        cost: double.parse(cost),
-        discount: discont,
-        uid: uid,
-        sellerName: sellerName,
-        sellerUid: sellerUid,
-        rating: 5,
-        noOfRating: 0,
-      );
-      ProductModel(
-        url: url,
-        productName: productName,
-        cost: rawCost,
-        discount: discont,
-        uid: uid,
-        sellerName: sellerName,
-        sellerUid: sellerUid,
-        rating: 5,
-        noOfRating: 0,
-      );
-      firebaseFirestore.collection("products").doc(uid).set(product.getJson());
-      output = "success";
+      try {
+        String uid = Utils().getUid();
+        String url = await uploadImageToDatabase(image: image, uid: uid);
+        double rawCost = double.parse(cost);
+        rawCost = rawCost - (rawCost * (discont / 100));
+        ProductModel product = ProductModel(
+          url: url,
+          productName: productName,
+          cost: double.parse(cost),
+          discount: discont,
+          uid: uid,
+          sellerName: sellerName,
+          sellerUid: sellerUid,
+          rating: 5,
+          noOfRating: 0,
+        );
+        await firebaseFirestore
+            .collection("products")
+            .doc(uid)
+            .set(product.getJson());
+        output = "success";
+      } catch (e) {
+        output = e.toString();
+      }
     } else {
       output = "Please make sure all the fields";
     }
@@ -82,5 +79,22 @@ class FirestoreMethods {
     UploadTask uploadImg = storageRef.putData(image);
     TaskSnapshot task = await uploadImg;
     return task.ref.getDownloadURL();
+  }
+
+  Future<List<Widget>> getProductsFromDiscount(int discount) async {
+    List<Widget> children = [];
+    QuerySnapshot<Map<String, dynamic>> snap = await firebaseFirestore
+        .collection("products")
+        .where("discount", isEqualTo: discount)
+        .get();
+    for (int i = 0; i < snap.docs.length; i++) {
+      DocumentSnapshot docSnap = snap.docs[i];
+      ProductModel model =
+          ProductModel.getModelFromJson(json: (docSnap.data()) as dynamic);
+      children.add(
+        SimpleProductWidget(productModel: model),
+      );
+    }
+    return children;
   }
 }
