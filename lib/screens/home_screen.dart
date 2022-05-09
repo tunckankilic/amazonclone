@@ -45,7 +45,6 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             UserDetailsBar(
               offset: offset,
-              userDetailsModel: UserDetailsModel(address: "Ev", name: "Ayşe"),
             ),
             SingleChildScrollView(
               controller: scrollController,

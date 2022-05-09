@@ -1,9 +1,11 @@
+import 'package:amazonclone/model/user_details.dart';
 import 'package:amazonclone/utils/constants.dart';
 import 'package:amazonclone/utils/utils.dart';
 import 'package:amazonclone/widgets/account_screen_app_bar.dart';
 import 'package:amazonclone/widgets/custom_main_button.dart';
 import 'package:amazonclone/widgets/products_showcase_list_view.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../widgets/introduction_widget.dart';
 
 class AccountScreen extends StatefulWidget {
@@ -16,6 +18,8 @@ class AccountScreen extends StatefulWidget {
 class _AccountScreenState extends State<AccountScreen> {
   @override
   Widget build(BuildContext context) {
+    UserDetailsModel userDetailsModel =
+        Provider.of<UserDetailsProvider>(context).userDetailsModel;
     Size screenSize = Utils().getScreenSize();
     return SafeArea(
       child: Scaffold(

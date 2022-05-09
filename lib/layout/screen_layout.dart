@@ -1,8 +1,10 @@
+import 'package:amazonclone/model/user_details.dart';
 import 'package:amazonclone/resources/firestore_methods.dart';
 import 'package:amazonclone/utils/colors.dart';
 import 'package:amazonclone/utils/constants.dart';
 import 'package:amazonclone/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ScreenLayout extends StatefulWidget {
   const ScreenLayout({Key? key}) : super(key: key);
@@ -35,6 +37,7 @@ class _ScreenLayoutState extends State<ScreenLayout> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<UserDetailsProvider>(context).getDate();
     return DefaultTabController(
       length: 4,
       child: SafeArea(

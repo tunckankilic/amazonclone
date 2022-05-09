@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../model/user_details.dart';
 import '../utils/colors.dart';
 import '../utils/constants.dart';
 
@@ -10,6 +12,8 @@ class IntroductionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    UserDetailsModel userDetailsModel =
+        Provider.of<UserDetailsProvider>(context).userDetailsModel;
     return Container(
       height: kAppBarHeight / 2,
       decoration: BoxDecoration(
@@ -40,14 +44,14 @@ class IntroductionWidget extends StatelessWidget {
                 text: TextSpan(
                   children: [
                     TextSpan(
-                      text: "Hello,",
+                      text: "Hello, ",
                       style: TextStyle(
                         color: Colors.grey[800],
                         fontSize: 27,
                       ),
                     ),
                     TextSpan(
-                      text: " Tunç",
+                      text: userDetailsModel.name,
                       style: TextStyle(
                           color: Colors.grey[800],
                           fontSize: 27,
