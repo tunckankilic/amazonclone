@@ -1,4 +1,5 @@
 import 'package:amazonclone/model/user_details.dart';
+import 'package:amazonclone/screens/sell_screen.dart';
 import 'package:amazonclone/utils/constants.dart';
 import 'package:amazonclone/utils/utils.dart';
 import 'package:amazonclone/widgets/account_screen_app_bar.dart';
@@ -36,7 +37,7 @@ class _AccountScreenState extends State<AccountScreen> {
                   padding: const EdgeInsets.all(8.0),
                   child: CustomMainButton(
                     child: Text(
-                      "Sign In",
+                      "Sign Out",
                       style: TextStyle(color: Colors.black),
                     ),
                     color: Colors.orange,
@@ -53,7 +54,10 @@ class _AccountScreenState extends State<AccountScreen> {
                     ),
                     color: Colors.yellow,
                     isLoading: false,
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => SellScreen()));
+                    },
                   ),
                 ),
                 ProductsShowcaseListView(
