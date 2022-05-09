@@ -1,7 +1,7 @@
+import 'package:amazonclone/model/order_model.dart';
 import 'package:amazonclone/model/product_model.dart';
 import 'package:amazonclone/model/user_details.dart';
 import 'package:amazonclone/screens/sell_screen.dart';
-import 'package:amazonclone/utils/constants.dart';
 import 'package:amazonclone/utils/utils.dart';
 import 'package:amazonclone/widgets/account_screen_app_bar.dart';
 import 'package:amazonclone/widgets/custom_main_button.dart';
@@ -46,7 +46,9 @@ class _AccountScreenState extends State<AccountScreen> {
                     ),
                     color: Colors.orange,
                     isLoading: false,
-                    onPressed: () {},
+                    onPressed: () {
+                      FirebaseAuth.instance.signOut();
+                    },
                   ),
                 ),
                 Padding(
@@ -102,24 +104,54 @@ class _AccountScreenState extends State<AccountScreen> {
                   ),
                 ),
                 Expanded(
-                    child: ListView.builder(
-                  itemBuilder: (context, index) => ListTile(
-                    title: Text(
-                      "Order: Black Shoe",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    subtitle: Text("Address: SomeWhere on earth"),
-                    trailing: IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.check,
-                      ),
-                    ),
+                  child: StreamBuilder(
+                    builder: (context,
+                        AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>>
+                            snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return Container();
+                      } else {
+                        return ListView.builder(
+                          itemBuilder: (context, index) {
+                            OrderRequestModel orderRequestModel =
+                                OrderRequestModel.getModelFromJson(
+                                    json: snapshot.data!.docs[index].data());
+                            return ListTile(
+                              title: Text(
+                                "Order: ${orderRequestModel.orderName}",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                              subtitle: Text(
+                                  "Address: ${orderRequestModel.buyersAddress}"),
+                              trailing: IconButton(
+                                onPressed: () async {
+                                  FirebaseFirestore.instance
+                                      .collection("users")
+                                      .doc(FirebaseAuth
+                                          .instance.currentUser!.uid)
+                                      .collection("orderRequests")
+                                      .doc(
+                                        snapshot.data!.docs[index].id,
+                                      )
+                                      .delete();
+                                },
+                                icon: Icon(Icons.check),
+                              ),
+                            );
+                          },
+                          itemCount: snapshot.data!.docs.length,
+                        );
+                      }
+                    },
+                    stream: FirebaseFirestore.instance
+                        .collection("users")
+                        .doc(FirebaseAuth.instance.currentUser!.uid)
+                        .collection("orderRequests")
+                        .snapshots(),
                   ),
-                  itemCount: 5,
-                ))
+                ),
               ],
             ),
           ),

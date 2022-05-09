@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 
+import 'package:amazonclone/model/order_model.dart';
 import 'package:amazonclone/model/product_model.dart';
 import 'package:amazonclone/model/review_model.dart';
 import 'package:amazonclone/model/user_details.dart';
@@ -128,7 +129,7 @@ class FirestoreMethods {
         .delete();
   }
 
-  Future buyAllItemsInCart() async {
+  Future buyAllItemsInCart({required UserDetailsModel userDetailsModel}) async {
     QuerySnapshot<Map<String, dynamic>> snapshot = await firebaseFirestore
         .collection("users")
         .doc(firebaseAuth.currentUser!.uid)
@@ -139,12 +140,14 @@ class FirestoreMethods {
       ProductModel productModel = ProductModel.getModelFromJson(
         json: snapshot.docs[i].data(),
       );
-      addProductToOrders(productModel: productModel);
+      addProductToOrders(productModel: productModel,userDetailsModel: userDetailsModel);
       await deleteProductFromCart(uid: productModel.uid);
     }
   }
 
-  Future addProductToOrders({required ProductModel productModel}) async {
+  Future addProductToOrders(
+      {required ProductModel productModel,
+      required UserDetailsModel userDetailsModel}) async {
     await firebaseFirestore
         .collection("users")
         .doc(firebaseAuth.currentUser!.uid)
@@ -152,5 +155,20 @@ class FirestoreMethods {
         .add(
           productModel.getJson(),
         );
+    await sendOrderRequest(
+        productModel: productModel, userDetailsModel: userDetailsModel);
+  }
+
+  Future sendOrderRequest(
+      {required ProductModel productModel,
+      required UserDetailsModel userDetailsModel}) async {
+    OrderRequestModel orderRequestModel = OrderRequestModel(
+        orderName: productModel.productName,
+        buyersAddress: userDetailsModel.address);
+    await firebaseFirestore
+        .collection("users")
+        .doc(productModel.sellerUid)
+        .collection("orderRequests")
+        .add(orderRequestModel.getJson());
   }
 }

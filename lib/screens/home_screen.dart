@@ -1,4 +1,3 @@
-import 'package:amazonclone/model/user_details.dart';
 import 'package:amazonclone/resources/firestore_methods.dart';
 import 'package:amazonclone/screens/sell_screen.dart';
 import 'package:amazonclone/utils/constants.dart';

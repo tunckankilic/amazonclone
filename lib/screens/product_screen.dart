@@ -15,6 +15,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import 'package:amazonclone/model/product_model.dart';
+import 'package:provider/provider.dart';
+
+import '../model/user_details.dart';
 
 class ProductScreen extends StatefulWidget {
   final ProductModel productModel;
@@ -106,6 +109,10 @@ class _ProductScreenState extends State<ProductScreen> {
                           isLoading: false,
                           onPressed: () async {
                             await FirestoreMethods().addProductToOrders(
+                                userDetailsModel:
+                                    Provider.of<UserDetailsProvider>(context,
+                                            listen: false)
+                                        .userDetailsModel,
                                 productModel: widget.productModel);
                             Utils().showSnackBar(
                                 context: context, content: "Done");
