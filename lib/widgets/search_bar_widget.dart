@@ -2,34 +2,36 @@ import 'package:amazonclone/screens/results_screen.dart';
 import 'package:amazonclone/screens/search_screen.dart';
 import 'package:amazonclone/utils/colors.dart';
 import 'package:amazonclone/utils/constants.dart';
+import 'package:amazonclone/utils/utils.dart';
 import 'package:flutter/material.dart';
 
-import '../utils/utils.dart';
-
 class SearchBarWidget extends StatelessWidget {
-  SearchBarWidget({
-    Key? key,
-    required this.hasBackButton,
-    required this.isReadOnly,
-  })  : prefferedSizeW = Size.fromHeight(kAppBarHeight),
-        super(key: key);
-  final Size prefferedSizeW;
   final bool isReadOnly;
   final bool hasBackButton;
+  SearchBarWidget({
+    Key? key,
+    required this.isReadOnly,
+    required this.hasBackButton,
+  })  : preferredSize =  Size.fromHeight(kAppBarHeight),
+        super(key: key);
+
+  @override
+  final Size preferredSize;
+
   OutlineInputBorder border = OutlineInputBorder(
     borderRadius: BorderRadius.circular(7),
-    borderSide: BorderSide(color: Colors.grey, width: 1),
+    borderSide: const BorderSide(
+      color: Colors.grey,
+      width: 1,
+    ),
   );
-  @override
-  Size get preferredSize {
-    return prefferedSizeW;
-  }
 
+  @override
   Widget build(BuildContext context) {
     Size screenSize = Utils().getScreenSize();
     return Container(
       height: kAppBarHeight,
-      decoration: BoxDecoration(
+      decoration:  BoxDecoration(
         gradient: LinearGradient(
           colors: backgroundGradient,
           begin: Alignment.centerLeft,
@@ -42,10 +44,9 @@ class SearchBarWidget extends StatelessWidget {
           hasBackButton
               ? IconButton(
                   onPressed: () {
-                    Navigator.of(context).pop();
+                    Navigator.pop(context);
                   },
-                  icon: Icon(Icons.arrow_back),
-                )
+                  icon: const Icon(Icons.arrow_back))
               : Container(),
           SizedBox(
             width: screenSize.width * 0.7,
@@ -56,23 +57,26 @@ class SearchBarWidget extends StatelessWidget {
                     color: Colors.black.withOpacity(0.2),
                     blurRadius: 8,
                     spreadRadius: 1,
-                    offset: Offset(0, 5),
+                    offset: const Offset(0, 5),
                   ),
                 ],
               ),
               child: TextField(
-                onSubmitted: (value) {
-                  Navigator.of(context).push(
+                onSubmitted: (String query) {
+                  Navigator.push(
+                    context,
                     MaterialPageRoute(
-                      builder: (context) => ResultsScreen(query: value),
+                      builder: (context) => ResultsScreen(query: query),
                     ),
                   );
                 },
                 readOnly: isReadOnly,
                 onTap: () {
                   if (isReadOnly) {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => SearchScreen()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const SearchScreen()));
                   }
                 },
                 decoration: InputDecoration(
@@ -87,10 +91,8 @@ class SearchBarWidget extends StatelessWidget {
           ),
           IconButton(
             onPressed: () {},
-            icon: Icon(
-              Icons.mic_none_outlined,
-            ),
-          ),
+            icon: const Icon(Icons.mic_none_outlined),
+          )
         ],
       ),
     );

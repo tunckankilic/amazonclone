@@ -18,6 +18,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   ScrollController scrollController = ScrollController();
   double offset = 0;
+
   @override
   void initState() {
     super.initState();
@@ -45,25 +46,27 @@ class _HomeScreenState extends State<HomeScreen> {
     List<Widget> temp80 = await FirestoreMethods().getProductsFromDiscount(80);
     List<Widget> temp60 = await FirestoreMethods().getProductsFromDiscount(60);
     List<Widget> temp0 = await FirestoreMethods().getProductsFromDiscount(0);
-    setState(() {
-      discount0 = temp0;
-      discount60 = temp60;
-      discount70 = temp70;
-      discount80 = temp80;
-    });
+    if (mounted) {
+      setState(() {
+        discount0 = temp0;
+        discount60 = temp60;
+        discount70 = temp70;
+        discount80 = temp80;
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(0.56),
-        child: SearchBarWidget(
-          hasBackButton: true,
-          isReadOnly: false,
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(0.56),
+          child: SearchBarWidget(
+            hasBackButton: true,
+            isReadOnly: false,
+          ),
         ),
-      ),
         body: (discount0 != null &&
                 discount60 != null &&
                 discount70 != null &&

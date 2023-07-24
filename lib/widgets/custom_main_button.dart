@@ -31,7 +31,7 @@ class CustomMainButton extends StatelessWidget {
               ),
             ),
       style: ElevatedButton.styleFrom(
-        primary: color,
+        backgroundColor: color,
         fixedSize: Size(
           screenSize.width * 0.6,
           40,

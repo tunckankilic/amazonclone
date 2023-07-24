@@ -39,13 +39,13 @@ class _ProductScreenState extends State<ProductScreen> {
     Size screenSize = Utils().getScreenSize();
     return SafeArea(
       child: Scaffold(
-     appBar: PreferredSize(
-        preferredSize: Size.fromHeight(0.56),
-        child: SearchBarWidget(
-          hasBackButton: true,
-          isReadOnly: true,
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(56.0),
+          child: SearchBarWidget(
+            hasBackButton: true,
+            isReadOnly: true,
+          ),
         ),
-      ),
         body: Stack(
           children: [
             SingleChildScrollView(
