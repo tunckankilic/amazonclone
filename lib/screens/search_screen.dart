@@ -7,9 +7,12 @@ class SearchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: SearchBarWidget(
-        isReadOnly: false,
-        hasBackButton: true,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(0.56),
+        child: SearchBarWidget(
+          hasBackButton: false,
+          isReadOnly: true,
+        ),
       ),
     );
   }

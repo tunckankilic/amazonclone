@@ -57,10 +57,13 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: SearchBarWidget(
-          isReadOnly: true,
-          hasBackButton: false,
+       appBar: PreferredSize(
+        preferredSize: Size.fromHeight(0.56),
+        child: SearchBarWidget(
+          hasBackButton: true,
+          isReadOnly: false,
         ),
+      ),
         body: (discount0 != null &&
                 discount60 != null &&
                 discount70 != null &&

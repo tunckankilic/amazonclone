@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 import '../utils/utils.dart';
 
-class AccountScreenAppBar extends StatelessWidget with PreferredSizeWidget {
+class AccountScreenAppBar extends StatelessWidget  {
   AccountScreenAppBar({
     Key? key,
   })  : prefferedSizeW = Size.fromHeight(kAppBarHeight),

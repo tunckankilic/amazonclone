@@ -14,9 +14,12 @@ class _MoreScreenState extends State<MoreScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: SearchBarWidget(
-        hasBackButton: false,
-        isReadOnly: true,
+     appBar: PreferredSize(
+        preferredSize: Size.fromHeight(0.56),
+        child: SearchBarWidget(
+          hasBackButton: false,
+          isReadOnly: true,
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(5.0),

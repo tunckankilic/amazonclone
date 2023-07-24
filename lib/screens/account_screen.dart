@@ -29,7 +29,8 @@ class _AccountScreenState extends State<AccountScreen> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
-        appBar: AccountScreenAppBar(),
+        appBar: PreferredSize(
+            preferredSize: Size.fromHeight(0.56), child: AccountScreenAppBar()),
         body: SingleChildScrollView(
           child: SizedBox(
             height: screenSize.height,

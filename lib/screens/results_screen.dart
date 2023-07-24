@@ -17,9 +17,12 @@ class ResultsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: SearchBarWidget(
-        hasBackButton: true,
-        isReadOnly: false,
+ appBar: PreferredSize(
+        preferredSize: Size.fromHeight(0.56),
+        child: SearchBarWidget(
+          hasBackButton: true,
+          isReadOnly: false,
+        ),
       ),
       body: Column(
         children: [

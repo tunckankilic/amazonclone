@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 import '../utils/utils.dart';
 
-class SearchBarWidget extends StatelessWidget with PreferredSizeWidget {
+class SearchBarWidget extends StatelessWidget {
   SearchBarWidget({
     Key? key,
     required this.hasBackButton,
